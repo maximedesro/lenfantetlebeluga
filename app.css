@@ -55,6 +55,7 @@ download
 .featureImage {
     width: 100%;
     height: auto;
+    border-radius: var(--border-radius);
 }
 
 .featureImageWrapper {
@@ -115,4 +116,77 @@ download
 }
 .buyNow:hover::after {
     transform: translateX(10px) translateY(-50%);
+}
+
+
+
+.gridItem:not(:first-child) a{
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s;
+    text-decoration: none;
+    padding: var(--padding);
+    background-color: var(--pale-red);
+    border-radius: var(--border-radius);
+}
+
+.gridItem a::after {
+    content: '→';
+    margin-left: 10px;
+    font-size: 40px;
+    position: absolute;
+    top: 48%;
+    transform: translateY(-50%);
+    transition: transform 0.3s;
+}
+
+.gridItem a:hover {
+    background-color: var(--pale-orange);
+}
+
+.gridItem a:hover::after {
+    transform: translateX(10px) translateY(-50%);
+}
+
+
+.readMore.readMore {
+
+}
+.readMore.readMore::after {
+    content:none;
+}
+.moreInfo {
+    opacity: 0;
+    pointer-events: none;
+    display: block;
+    left:40px;
+    top: 40px;
+    bottom: 40px;
+    right: 40px;
+    max-height: 100%;
+    position: fixed;
+    overflow-y: auto;
+    background-color: var(--pale-yellow);
+    padding: var(--padding);
+    z-index: 1000;
+    padding-inline: max(calc((100vw - 700px) / 2), var(--padding));
+    transition: opacity 0.3s;
+    border-radius: var(--border-radius);
+}
+.readMore:focus + .moreInfo,
+.moreInfo:focus {
+    
+    opacity: 1;
+    pointer-events: auto;
+    
+}
+
+
+.moreInfo p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin: 30px 10px
 }
