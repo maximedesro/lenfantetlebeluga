@@ -1,0 +1,118 @@
+/* basic reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+/* color variables, create palette of pale yellow orange red colors, set in CSS variables */
+:root {
+    --pale-yellow: #dacece;
+    --pale-orange: #f9d9d9;
+    --pale-red: #f9c3c3;
+    --light: #ffffff;
+    --dark: #333333;
+    --border-radius: 10px;
+    --padding: 40px;
+    --gap: 20px;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--dark);
+    margin: 12vmin;
+}
+
+/*
+gridContainer
+gridItem
+gridCTA
+ctaItem
+buyNow
+action
+download
+*/
+
+.gridContainer {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gap);
+}
+
+.gridItem:nth-child(1) {
+    grid-column: span 3;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--gap);
+}
+
+.featureImage {
+    width: 100%;
+    height: auto;
+}
+
+.featureImageWrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+}
+
+.ctasWrapper {
+    display: grid;
+    gap: var(--gap);
+}
+
+.ctaItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--padding);
+    gap: var(--gap);
+    border-radius: var(--border-radius);
+    background-color: var(--pale-yellow);
+}
+
+.ctaItem:nth-child(2) {
+    padding:0;
+    background-color: transparent;
+}
+
+
+
+
+.buyNow {
+    background-color: var(--pale-orange);
+    display: block;
+    padding: var(--padding);
+    border-radius: var(--border-radius);
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s;
+}
+
+/* add right arrow at the end with pseudo elemnt */
+.buyNow::after {
+    content: '→';
+    margin-left: 10px;
+    font-size: 40px;
+    position: absolute;
+    top: 48%;
+    transform: translateY(-50%);
+    transition: transform 0.3s;
+}
+
+/* on hover, move the arrow to the right */
+.buyNow:hover {
+    background-color: var(--pale-red);
+}
+.buyNow:hover::after {
+    transform: translateX(10px) translateY(-50%);
+}
