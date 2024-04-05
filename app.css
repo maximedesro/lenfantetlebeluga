@@ -177,11 +177,32 @@ download
     border-radius: var(--border-radius);
 }
 .readMore:focus + .moreInfo,
-.moreInfo:focus {
-    
+.moreInfo:focus,
+.moreInfo:focus-within {
     opacity: 1;
     pointer-events: auto;
-    
+}
+
+
+.closeReadMore {
+    display: none;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    font-size: 2rem;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 6px;
+    background-color: transparent;
+}
+.closeReadMore.closeReadMore::after {
+    content: none;
+}
+
+.readMore:focus + .moreInfo + .closeReadMore,
+.moreInfo:focus + .closeReadMore,
+.moreInfo:focus-within  + .closeReadMore {
+    display: block;
 }
 
 
