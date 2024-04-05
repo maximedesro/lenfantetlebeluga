@@ -38,7 +38,7 @@ download
 */
 
 .gridContainer {
-    max-width: 1100px;
+    max-width: 1920px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -48,7 +48,7 @@ download
 .gridItem:nth-child(1) {
     grid-column: span 3;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 2fr minmax(40%, 1fr);
     gap: var(--gap);
 }
 
@@ -67,6 +67,7 @@ download
 .ctasWrapper {
     display: grid;
     gap: var(--gap);
+    grid-template-rows: auto 1fr;
 }
 
 .ctaItem {
@@ -82,6 +83,8 @@ download
 .ctaItem:nth-child(2) {
     padding:0;
     background-color: transparent;
+    display:grid;
+    grid-template-columns: repeat(1, 1fr);
 }
 
 
@@ -90,22 +93,24 @@ download
 .buyNow {
     background-color: var(--pale-orange);
     display: block;
-    padding: var(--padding);
+    padding: 0 var(--padding);
     border-radius: var(--border-radius);
     font-size: 1.2rem;
     font-weight: 700;
     text-decoration: none;
     position: relative;
     transition: all 0.3s;
+    display: flex;
+    align-items: center;
 }
 
 /* add right arrow at the end with pseudo elemnt */
 .buyNow::after {
     content: '→';
-    margin-left: 10px;
     font-size: 40px;
     position: absolute;
     top: 48%;
+    right: 60px;
     transform: translateY(-50%);
     transition: transform 0.3s;
 }
@@ -133,7 +138,8 @@ download
     border-radius: var(--border-radius);
 }
 
-.gridItem a::after {
+.action::after,
+.download::after {
     content: '→';
     margin-left: 10px;
     font-size: 40px;
@@ -143,38 +149,33 @@ download
     transition: transform 0.3s;
 }
 
-.gridItem a:hover {
+.action:hover,
+.download:hover {
     background-color: var(--pale-orange);
 }
 
-.gridItem a:hover::after {
-    transform: translateX(10px) translateY(-50%);
+.action:hover::after,
+.download:hover::after {
+     transform: translateX(10px) translateY(-50%);
 }
 
-
-.readMore.readMore {
-
-}
-.readMore.readMore::after {
-    content:none;
-}
 .moreInfo {
     opacity: 0;
     pointer-events: none;
     display: block;
-    left:40px;
+    left: max(calc((100vw - 700px) / 2), var(--padding));
     top: 40px;
     bottom: 40px;
-    right: 40px;
+    right: max(calc((100vw - 700px) / 2), var(--padding));
     max-height: 100%;
     position: fixed;
     overflow-y: auto;
     background-color: var(--pale-yellow);
     padding: var(--padding);
-    z-index: 1000;
-    padding-inline: max(calc((100vw - 700px) / 2), var(--padding));
+    z-index: 98;
     transition: opacity 0.3s;
     border-radius: var(--border-radius);
+    box-shadow: 0 0 0 2100px #000000d9;
 }
 .readMore:focus + .moreInfo,
 .moreInfo:focus,
@@ -183,8 +184,15 @@ download
     pointer-events: auto;
 }
 
+.moreInfo::after { /* prevent content from being clicked */
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+}
 
-.closeReadMore {
+
+.closeReadMore.closeReadMore.closeReadMore {
     display: none;
     position: fixed;
     top: 10px;
@@ -194,9 +202,8 @@ download
     text-decoration: none;
     padding: 6px;
     background-color: transparent;
-}
-.closeReadMore.closeReadMore::after {
-    content: none;
+    color: #ffffff;
+    z-index: 99;
 }
 
 .readMore:focus + .moreInfo + .closeReadMore,
