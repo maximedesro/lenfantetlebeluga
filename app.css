@@ -24,7 +24,7 @@ body {
     font-size: 1rem;
     line-height: 1.5;
     color: var(--dark);
-    margin: 12vmin;
+    margin: var(--gap);
 }
 
 /*
@@ -53,6 +53,7 @@ download
 }
 
 .featureImage {
+    display: block;
     width: 100%;
     height: auto;
     border-radius: var(--border-radius);
@@ -81,9 +82,9 @@ download
 }
 
 .ctaItem:nth-child(2) {
-    padding:0;
+    padding: 0;
     background-color: transparent;
-    display:grid;
+    display: grid;
     grid-template-columns: repeat(1, 1fr);
 }
 
@@ -119,13 +120,14 @@ download
 .buyNow:hover {
     background-color: var(--pale-red);
 }
+
 .buyNow:hover::after {
     transform: translateX(10px) translateY(-50%);
 }
 
 
 
-.gridItem:not(:first-child) a{
+.gridItem:not(:first-child) a {
     display: block;
     font-size: 1.2rem;
     font-weight: 700;
@@ -156,49 +158,47 @@ download
 
 .action:hover::after,
 .download:hover::after {
-     transform: translateX(10px) translateY(-50%);
+    transform: translateX(10px) translateY(-50%);
 }
 
 .moreInfo {
     opacity: 0;
     pointer-events: none;
-    display: block;
-    left: max(calc((100vw - 700px) / 2), var(--padding));
-    top: 40px;
-    bottom: 40px;
-    right: max(calc((100vw - 700px) / 2), var(--padding));
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
     max-height: 100%;
     position: fixed;
-    overflow-y: auto;
-    background-color: var(--pale-yellow);
+    background-color: #000000d9;
     padding: var(--padding);
     z-index: 98;
     transition: opacity 0.3s;
-    border-radius: var(--border-radius);
-    box-shadow: 0 0 0 2100px #000000d9;
+    display: grid;
+    place-items: center;
 }
-.readMore:focus + .moreInfo,
-.moreInfo:focus,
-.moreInfo:focus-within {
+
+.moreInfo.show {
     opacity: 1;
-    pointer-events: auto;
+    pointer-events: all;
 }
 
-.moreInfo::after { /* prevent content from being clicked */
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: -3;
+.moreInfoInner {
+    max-width: 700px;
+    margin: auto;
+    padding: var(--padding);
+    background-color: var(--pale-yellow);
+    border-radius: var(--border-radius);
+    overflow-y: auto;
+    max-height: 100%;
 }
-
 
 .closeReadMore.closeReadMore.closeReadMore {
-    display: none;
+    pointer-events: none;
     position: fixed;
     top: 10px;
     right: 10px;
     font-size: 2rem;
-    cursor: pointer;
     text-decoration: none;
     padding: 6px;
     background-color: transparent;
@@ -206,15 +206,14 @@ download
     z-index: 99;
 }
 
-.readMore:focus + .moreInfo + .closeReadMore,
-.moreInfo:focus + .closeReadMore,
-.moreInfo:focus-within  + .closeReadMore {
-    display: block;
-}
-
-
 .moreInfo p {
     font-size: 1.2rem;
     line-height: 1.5;
     margin: 30px 10px
+}
+
+/* paypal */
+select#selector {
+    font-size: 1rem;
+    font-family: arial;
 }
